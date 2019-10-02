@@ -42,31 +42,3 @@ std::string FileDialogPrompt(std::string path = "",bool cls = false,std::string 
 	else
 		return directory[choice - 1];
 }
-
-
-int PrintDirectoryList(std::string path = "") {
-	int i= 1;
-	std::vector<std::string> directory;
-	for (const auto & entry : fs::directory_iterator(path)){
-		std::cout << entry.path() << std::endl;
-	}
-	return 0;// directorys;
-}
-
-//reads all bytes in file and returns a char pointer array
-static std::vector<char> ReadAllBytes(std::string  filename)
-{
-	std::ifstream ifs(filename, std::ios::binary | std::ios::ate);
-	std::ifstream::pos_type pos = ifs.tellg();
-
-	std::vector<char>   result(pos);
-
-	ifs.seekg(0, std::ios::beg);
-	ifs.read(&result[0], pos);
-	for (char byte : result) {
-		std::cout << byte << std::endl;
-	}
-
-
-	return result;
-}
